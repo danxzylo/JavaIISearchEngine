@@ -7,7 +7,7 @@ package searchengineui;
 
 /**
  *
- * @author Zylo
+ * @author Daniel Zacarias
  */
 public class GUI extends javax.swing.JFrame {
 
@@ -27,12 +27,13 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         userSearchText = new java.awt.TextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        allTermsOption = new javax.swing.JRadioButton();
+        includesTermsOption = new javax.swing.JRadioButton();
+        exactPhraseOption = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -56,11 +57,18 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("All Search Terms");
+        buttonGroup1.add(allTermsOption);
+        allTermsOption.setMnemonic('A');
+        allTermsOption.setSelected(true);
+        allTermsOption.setText("All Search Terms");
 
-        jRadioButton2.setText("Exact Phrase");
+        buttonGroup1.add(includesTermsOption);
+        includesTermsOption.setMnemonic('p');
+        includesTermsOption.setText("Exact Phrase");
 
-        jRadioButton3.setText("Includes");
+        buttonGroup1.add(exactPhraseOption);
+        exactPhraseOption.setMnemonic('i');
+        exactPhraseOption.setText("Includes");
 
         jButton1.setText("Search!");
         jButton1.setEnabled(false);
@@ -91,13 +99,13 @@ public class GUI extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(userSearchText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jRadioButton1)
+                                    .addComponent(allTermsOption)
                                     .addGap(12, 12, 12)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jButton1)
-                                        .addComponent(jRadioButton3))
+                                        .addComponent(exactPhraseOption))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jRadioButton2)))))
+                                    .addComponent(includesTermsOption)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jLabel3)))
@@ -114,9 +122,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
+                    .addComponent(allTermsOption)
+                    .addComponent(exactPhraseOption)
+                    .addComponent(includesTermsOption))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
@@ -126,13 +134,15 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        fileMenu.setMnemonic('F');
         fileMenu.setText("File");
 
+        aboutOption.setMnemonic('b');
         aboutOption.setText("About...");
         fileMenu.add(aboutOption);
         fileMenu.add(jSeparator1);
 
-        exitOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        exitOption.setMnemonic('x');
         exitOption.setText("Exit");
         exitOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,8 +153,10 @@ public class GUI extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
+        editMenu.setMnemonic('E');
         editMenu.setText("Edit");
 
+        addRemoveDirectory.setMnemonic('r');
         addRemoveDirectory.setText("Add/Remove Files...");
         addRemoveDirectory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,18 +234,19 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutOption;
     private javax.swing.JMenuItem addRemoveDirectory;
+    private javax.swing.JRadioButton allTermsOption;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JRadioButton exactPhraseOption;
     private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JRadioButton includesTermsOption;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextArea resultsArea;
