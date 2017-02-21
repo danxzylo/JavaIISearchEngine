@@ -86,6 +86,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel2.setText("Results: ");
 
+        resultsArea.setEditable(false);
         resultsArea.setColumns(20);
         resultsArea.setRows(5);
         jScrollPane1.setViewportView(resultsArea);
