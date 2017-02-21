@@ -34,7 +34,7 @@ public class GUI extends javax.swing.JFrame {
         allTermsOption = new javax.swing.JRadioButton();
         includesTermsOption = new javax.swing.JRadioButton();
         exactPhraseOption = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultsArea = new javax.swing.JTextArea();
@@ -45,7 +45,7 @@ public class GUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitOption = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        addRemoveDirectory = new javax.swing.JMenuItem();
+        addRemoveOption = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("File Search Engine | Team CnR");
@@ -62,22 +62,27 @@ public class GUI extends javax.swing.JFrame {
         allTermsOption.setMnemonic('A');
         allTermsOption.setSelected(true);
         allTermsOption.setText("All Search Terms");
+        allTermsOption.setToolTipText("Search for files that contain all search terms");
 
         buttonGroup1.add(includesTermsOption);
         includesTermsOption.setMnemonic('p');
         includesTermsOption.setText("Exact Phrase");
+        includesTermsOption.setToolTipText("Search for files that contain the exact phrasing of search terms");
 
         buttonGroup1.add(exactPhraseOption);
         exactPhraseOption.setMnemonic('i');
         exactPhraseOption.setText("Includes Terms");
+        exactPhraseOption.setToolTipText("Search for files that may contain search terms");
         exactPhraseOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exactPhraseOptionActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Search!");
-        jButton1.setEnabled(false);
+        searchButton.setMnemonic('s');
+        searchButton.setText("Search!");
+        searchButton.setToolTipText("");
+        searchButton.setEnabled(false);
 
         jLabel2.setText("Results: ");
 
@@ -105,7 +110,7 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(userSearchText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
+                                    .addComponent(searchButton)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(allTermsOption)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,7 +138,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(exactPhraseOption)
                     .addComponent(includesTermsOption))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(searchButton)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -163,14 +168,14 @@ public class GUI extends javax.swing.JFrame {
         editMenu.setMnemonic('E');
         editMenu.setText("Edit");
 
-        addRemoveDirectory.setMnemonic('r');
-        addRemoveDirectory.setText("Add/Remove Files...");
-        addRemoveDirectory.addActionListener(new java.awt.event.ActionListener() {
+        addRemoveOption.setMnemonic('r');
+        addRemoveOption.setText("Add/Remove Files...");
+        addRemoveOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addRemoveDirectoryActionPerformed(evt);
+                addRemoveOptionActionPerformed(evt);
             }
         });
-        editMenu.add(addRemoveDirectory);
+        editMenu.add(addRemoveOption);
 
         jMenuBar1.add(editMenu);
 
@@ -194,9 +199,9 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userSearchTextActionPerformed
 
-    private void addRemoveDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveDirectoryActionPerformed
+    private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addRemoveDirectoryActionPerformed
+    }//GEN-LAST:event_addRemoveOptionActionPerformed
 
     private void exitOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitOptionActionPerformed
         // When exit is clicked, program is closed
@@ -244,7 +249,7 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutOption;
-    private javax.swing.JMenuItem addRemoveDirectory;
+    private javax.swing.JMenuItem addRemoveOption;
     private javax.swing.JRadioButton allTermsOption;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu editMenu;
@@ -252,7 +257,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JRadioButton includesTermsOption;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -261,6 +265,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextArea resultsArea;
+    private javax.swing.JButton searchButton;
     private java.awt.TextField userSearchText;
     // End of variables declaration//GEN-END:variables
 }

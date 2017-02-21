@@ -37,13 +37,13 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="addRemoveDirectory">
+            <MenuItem class="javax.swing.JMenuItem" name="addRemoveOption">
               <Properties>
                 <Property name="mnemonic" type="int" value="114"/>
                 <Property name="text" type="java.lang.String" value="Add/Remove Files..."/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRemoveDirectoryActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRemoveOptionActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -105,7 +105,7 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="allTermsOption" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
                       <Component id="includesTermsOption" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -173,6 +173,7 @@
             <Property name="mnemonic" type="int" value="65"/>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="All Search Terms"/>
+            <Property name="toolTipText" type="java.lang.String" value="Search for files that contain all search terms"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="includesTermsOption">
@@ -182,6 +183,7 @@
             </Property>
             <Property name="mnemonic" type="int" value="112"/>
             <Property name="text" type="java.lang.String" value="Exact Phrase"/>
+            <Property name="toolTipText" type="java.lang.String" value="Search for files that contain the exact phrasing of search terms"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="exactPhraseOption">
@@ -191,14 +193,17 @@
             </Property>
             <Property name="mnemonic" type="int" value="105"/>
             <Property name="text" type="java.lang.String" value="Includes Terms"/>
+            <Property name="toolTipText" type="java.lang.String" value="Search for files that may contain search terms"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exactPhraseOptionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="searchButton">
           <Properties>
+            <Property name="mnemonic" type="int" value="115"/>
             <Property name="text" type="java.lang.String" value="Search!"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
