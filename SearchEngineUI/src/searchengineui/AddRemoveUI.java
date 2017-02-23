@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package searchengineui;
- import javax.swing.JFileChooser;
- import java.io.File;
+
+import javax.swing.JFileChooser;
+import java.io.*;
+
 /**
  *
  * @author Daniel
@@ -41,6 +43,19 @@ public class AddRemoveUI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+        // Read in the list of indexed files
+        Reader reader = null;
+        try {
+            reader = new FileReader(new File("search.cfg"));
+            jTextArea1.read(reader, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+            } catch (Exception e) {
+            }
+        }
 
         addButton.setMnemonic('a');
         addButton.setText("Add File/Directory");
@@ -53,6 +68,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
         okButton.setMnemonic('o');
         okButton.setText("Ok!");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         removeButton.setMnemonic('r');
         removeButton.setText("Remove Selected");
@@ -91,18 +111,31 @@ public class AddRemoveUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-     JFileChooser fileDialog = new JFileChooser();
+        JFileChooser fileDialog = new JFileChooser();
         // Set the Directory
         fileDialog.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileDialog.showOpenDialog(this);
-        
+
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileDialog.getSelectedFile();
             // Add the file to the list
             jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
             // Index the file here
-        } 
+        }
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        // Write the list of filenames to a .cfg file
+
+        BufferedWriter outFile = null;
+        try {
+            outFile = new BufferedWriter(new FileWriter("search.cfg"));
+            jTextArea1.write(outFile);
+        } // Needs error checking here
+        catch (IOException ex) {
+        } finally {
+        }
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments
