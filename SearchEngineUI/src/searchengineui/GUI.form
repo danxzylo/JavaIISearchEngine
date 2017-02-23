@@ -175,6 +175,9 @@
             <Property name="text" type="java.lang.String" value="All Search Terms"/>
             <Property name="toolTipText" type="java.lang.String" value="Search for files that contain all search terms"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allTermsOptionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="includesTermsOption">
           <Properties>

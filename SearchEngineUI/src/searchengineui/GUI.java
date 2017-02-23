@@ -63,6 +63,11 @@ public class GUI extends javax.swing.JFrame {
         allTermsOption.setSelected(true);
         allTermsOption.setText("All Search Terms");
         allTermsOption.setToolTipText("Search for files that contain all search terms");
+        allTermsOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allTermsOptionActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(includesTermsOption);
         includesTermsOption.setMnemonic('p');
@@ -201,7 +206,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_userSearchTextActionPerformed
 
     private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
-        // TODO add your handling code here:
+    // Call the AddRemoveUI
     }//GEN-LAST:event_addRemoveOptionActionPerformed
 
     private void exitOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitOptionActionPerformed
@@ -212,6 +217,10 @@ public class GUI extends javax.swing.JFrame {
     private void exactPhraseOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exactPhraseOptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exactPhraseOptionActionPerformed
+
+    private void allTermsOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allTermsOptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allTermsOptionActionPerformed
 
     /**
      * @param args the command line arguments
