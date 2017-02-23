@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package searchengineui;
-
+ import javax.swing.JFileChooser;
+ import java.io.File;
 /**
  *
  * @author Daniel
@@ -44,6 +45,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
         addButton.setMnemonic('a');
         addButton.setText("Add File/Directory");
         addButton.setToolTipText("Add files or directories to the index");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         okButton.setMnemonic('o');
         okButton.setText("Ok!");
@@ -83,6 +89,20 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+     JFileChooser fileDialog = new JFileChooser();
+        // Set the Directory
+        fileDialog.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileDialog.showOpenDialog(this);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileDialog.getSelectedFile();
+            // Add the file to the list
+            jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
+            // Index the file here
+        } 
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments

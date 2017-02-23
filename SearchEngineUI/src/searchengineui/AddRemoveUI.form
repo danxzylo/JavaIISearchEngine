@@ -78,6 +78,9 @@
         <Property name="text" type="java.lang.String" value="Add File/Directory"/>
         <Property name="toolTipText" type="java.lang.String" value="Add files or directories to the index"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="okButton">
       <Properties>
