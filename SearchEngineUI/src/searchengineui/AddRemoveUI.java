@@ -6,8 +6,9 @@
 package searchengineui;
 
 import javax.swing.JFileChooser;
+import javax.swing.*;
 import java.io.*;
-
+import javax.swing.ListSelectionModel;
 /**
  *
  * @author Daniel
@@ -77,6 +78,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
         removeButton.setMnemonic('r');
         removeButton.setText("Remove Selected");
         removeButton.setToolTipText("Remove selected files/directories from the index");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,8 +140,14 @@ public class AddRemoveUI extends javax.swing.JFrame {
         } // Needs error checking here
         catch (IOException ex) {
         } finally {
+            // Give back control to GUI.java
+            GUI.main(null);
         }
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     /**
      * @param args the command line arguments
