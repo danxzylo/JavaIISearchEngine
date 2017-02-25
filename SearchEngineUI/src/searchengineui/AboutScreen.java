@@ -56,6 +56,11 @@ public class AboutScreen extends javax.swing.JFrame {
         okButton.setMnemonic('o');
         okButton.setText("OK!");
         okButton.setToolTipText("");
+        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OkButton(evt);
+            }
+        });
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -120,6 +125,11 @@ public class AboutScreen extends javax.swing.JFrame {
                 // TODO add your handling code here:
             
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void OkButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkButton
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_OkButton
 
     /**
      * @param args the command line arguments
