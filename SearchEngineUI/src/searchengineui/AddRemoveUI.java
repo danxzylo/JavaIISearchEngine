@@ -29,7 +29,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 fileList.addElement(line);
-    }
+            }
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -45,32 +45,14 @@ public class AddRemoveUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add/Remove Files");
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-        // Read in the list of indexed files
-        Reader reader = null;
-        try {
-            reader = new FileReader(new File("search.cfg"));
-            jTextArea1.read(reader, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch (Exception e) {
-            }
-        }
 
         addButton.setMnemonic('a');
         addButton.setText("Add File/Directory");
@@ -83,6 +65,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
         okButton.setMnemonic('o');
         okButton.setText("Ok!");
+        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OkButton(evt);
+            }
+        });
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -92,12 +79,19 @@ public class AddRemoveUI extends javax.swing.JFrame {
         removeButton.setMnemonic('r');
         removeButton.setText("Remove Selected");
         removeButton.setToolTipText("Remove selected files/directories from the index");
+        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveItem(evt);
+            }
+        });
+
+        jList1.setModel(fileList);
+        jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(addButton)
@@ -108,12 +102,16 @@ public class AddRemoveUI extends javax.swing.JFrame {
                 .addGap(258, 258, 258)
                 .addComponent(okButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(removeButton))
@@ -134,7 +132,8 @@ public class AddRemoveUI extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileDialog.getSelectedFile();
             // Add the file to the list
-            jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
+            //jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
+            fileList.addElement(selectedFile.getAbsolutePath());
             // Index the file here
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -145,22 +144,22 @@ public class AddRemoveUI extends javax.swing.JFrame {
         BufferedWriter outFile = null;
         try {
             outFile = new BufferedWriter(new FileWriter("search.cfg"));
-            jTextArea1.write(outFile);
+            //jTextArea1.write(outFile);
         } // Needs error checking here
         catch (IOException ex) {
         } finally {
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
-    private void RemoveItem(java.awt.event.MouseEvent evt) {                            
+    private void RemoveItem(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveItem
         // TODO add your handling code here:
         int selectedIndex = jList1.getSelectedIndex();
         if(selectedIndex != -1){
             fileList.remove(selectedIndex);
         }        
-    }                           
+    }//GEN-LAST:event_RemoveItem
 
-    private void OkButton(java.awt.event.MouseEvent evt) {                          
+    private void OkButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkButton
         // TODO add your handling code here: 
         
         try{
@@ -186,7 +185,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();       
-    }                         
+    }//GEN-LAST:event_OkButton
 
     /**
      * @param args the command line arguments
@@ -225,8 +224,8 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okButton;
     private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
