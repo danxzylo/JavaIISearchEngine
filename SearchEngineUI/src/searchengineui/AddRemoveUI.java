@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class AddRemoveUI extends javax.swing.JFrame {
 
     DefaultListModel fileList = new DefaultListModel();
+    int numberOfFilesIndexed = fileList.getSize();
     /**
      * Creates new form AddRemoveUI
      */
@@ -44,15 +45,47 @@ public class AddRemoveUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        addButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        addButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add/Remove Files");
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        okButton.setMnemonic('o');
+        okButton.setText("Ok!");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(okButton, gridBagConstraints);
+
+        jList1.setModel(fileList);
+        jScrollPane2.setViewportView(jList1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 589;
+        gridBagConstraints.ipady = 156;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
+        getContentPane().add(jScrollPane2, gridBagConstraints);
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         addButton.setMnemonic('a');
         addButton.setText("Add File/Directory");
@@ -62,63 +95,24 @@ public class AddRemoveUI extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 55, 0, 40);
+        jPanel1.add(addButton, gridBagConstraints);
 
-        okButton.setMnemonic('o');
-        okButton.setText("Ok!");
-        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OkButton(evt);
-            }
-        });
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Remove Selected");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 100, 0, 65);
+        jPanel1.add(jButton1, gridBagConstraints);
 
-        removeButton.setMnemonic('r');
-        removeButton.setText("Remove Selected");
-        removeButton.setToolTipText("Remove selected files/directories from the index");
-        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RemoveItem(evt);
-            }
-        });
-
-        jList1.setModel(fileList);
-        jScrollPane2.setViewportView(jList1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(addButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(removeButton)
-                .addGap(103, 103, 103))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(okButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(removeButton))
-                .addGap(18, 18, 18)
-                .addComponent(okButton)
-                .addGap(0, 23, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,7 +128,8 @@ public class AddRemoveUI extends javax.swing.JFrame {
             // Add the file to the list
             //jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
             fileList.addElement(selectedFile.getAbsolutePath());
-            // Index the file here
+            // Index the file here   
+            numberOfFilesIndexed = fileList.getSize();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -155,8 +150,9 @@ public class AddRemoveUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedIndex = jList1.getSelectedIndex();
         if(selectedIndex != -1){
-            fileList.remove(selectedIndex);
-        }        
+            fileList.remove(selectedIndex); 
+            numberOfFilesIndexed = fileList.getSize();
+        }                
     }//GEN-LAST:event_RemoveItem
 
     private void OkButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkButton
@@ -179,6 +175,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
                 pw.println(fileList.get(i).toString());                          
             }                      
             pw.close();
+            numberOfFilesIndexed = fileList.getSize();
             }
         
         catch (Exception e) {
@@ -224,9 +221,10 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okButton;
-    private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
 }
