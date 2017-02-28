@@ -17,6 +17,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
     }
+    AddRemoveUI x = new AddRemoveUI();
 
     /**
      * This method is called from within the constructor to initialize the form.
