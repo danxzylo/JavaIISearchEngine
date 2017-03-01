@@ -7,7 +7,7 @@ package searchengineui;
 
 /**
  *
- * @author Daniel
+ * @author Team CnR
  */
 public class AddRemoveUI extends javax.swing.JFrame {
 
@@ -47,6 +47,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
         okButton.setMnemonic('o');
         okButton.setText("Ok!");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         removeButton.setMnemonic('r');
         removeButton.setText("Remove Selected");
@@ -83,6 +88,12 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,7 +7,7 @@ package searchengineui;
 
 /**
  *
- * @author Daniel Zacarias
+ * @author Team CnR
  */
 public class GUI extends javax.swing.JFrame {
 
