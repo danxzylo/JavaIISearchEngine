@@ -59,10 +59,10 @@ public class AddRemoveUI extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         okButton.setMnemonic('o');
-        okButton.setText("Ok!");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+        okButton.setText("OK");
+        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OkButton(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -77,7 +77,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 589;
+        gridBagConstraints.ipadx = 450;
         gridBagConstraints.ipady = 156;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
@@ -103,6 +103,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
         jPanel1.add(addButton, gridBagConstraints);
 
         jButton1.setText("Remove Selected");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveButtonClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -119,32 +124,23 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         JFileChooser fileDialog = new JFileChooser();
+        fileDialog.setMultiSelectionEnabled(true);
         // Set the Directory
         fileDialog.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileDialog.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileDialog.getSelectedFile();
-            // Add the file to the list
-            //jTextArea1.append(selectedFile.getAbsolutePath() + "\n");
-            fileList.addElement(selectedFile.getAbsolutePath());
-            // Index the file here   
+            File[] selectedFiles = fileDialog.getSelectedFiles();
+            
+            int i = 0;
+            
+            for(i = 0; i<selectedFiles.length; ++i) {
+                fileList.addElement(selectedFiles[i].getAbsolutePath());
+            }
+          
             numberOfFilesIndexed = fileList.getSize();
         }
     }//GEN-LAST:event_addButtonActionPerformed
-
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // Write the list of filenames to a .cfg file
-
-        BufferedWriter outFile = null;
-        try {
-            outFile = new BufferedWriter(new FileWriter("search.cfg"));
-            //jTextArea1.write(outFile);
-        } // Needs error checking here
-        catch (IOException ex) {
-        } finally {
-        }
-    }//GEN-LAST:event_okButtonActionPerformed
 
     private void RemoveItem(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveItem
         // TODO add your handling code here:
@@ -183,6 +179,14 @@ public class AddRemoveUI extends javax.swing.JFrame {
         }
         this.dispose();       
     }//GEN-LAST:event_OkButton
+
+    private void RemoveButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveButtonClicked
+        int selectedIndex = jList1.getSelectedIndex();
+        if(selectedIndex != -1){
+            fileList.remove(selectedIndex); 
+            numberOfFilesIndexed = fileList.getSize();
+        }                
+    }//GEN-LAST:event_RemoveButtonClicked
 
     /**
      * @param args the command line arguments
