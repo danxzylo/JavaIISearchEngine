@@ -17,6 +17,9 @@
                 <Property name="mnemonic" type="int" value="98"/>
                 <Property name="text" type="java.lang.String" value="About..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutOptionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -181,9 +184,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="mnemonic" type="int" value="112"/>
-            <Property name="text" type="java.lang.String" value="Exact Phrase"/>
-            <Property name="toolTipText" type="java.lang.String" value="Search for files that contain the exact phrasing of search terms"/>
+            <Property name="mnemonic" type="int" value="105"/>
+            <Property name="text" type="java.lang.String" value="Includes Terms"/>
+            <Property name="toolTipText" type="java.lang.String" value="Search for files that may include search terms"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="exactPhraseOption">
@@ -191,13 +194,10 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="mnemonic" type="int" value="105"/>
-            <Property name="text" type="java.lang.String" value="Includes Terms"/>
-            <Property name="toolTipText" type="java.lang.String" value="Search for files that may contain search terms"/>
+            <Property name="mnemonic" type="int" value="112"/>
+            <Property name="text" type="java.lang.String" value="Exact Phrase"/>
+            <Property name="toolTipText" type="java.lang.String" value="Search for files that contain exact phrasing of search terms"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exactPhraseOptionActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="searchButton">
           <Properties>
@@ -206,6 +206,9 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

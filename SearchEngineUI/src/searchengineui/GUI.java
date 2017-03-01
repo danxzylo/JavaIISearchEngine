@@ -65,24 +65,24 @@ public class GUI extends javax.swing.JFrame {
         allTermsOption.setToolTipText("Search for files that contain all search terms");
 
         buttonGroup1.add(includesTermsOption);
-        includesTermsOption.setMnemonic('p');
-        includesTermsOption.setText("Exact Phrase");
-        includesTermsOption.setToolTipText("Search for files that contain the exact phrasing of search terms");
+        includesTermsOption.setMnemonic('i');
+        includesTermsOption.setText("Includes Terms");
+        includesTermsOption.setToolTipText("Search for files that may include search terms");
 
         buttonGroup1.add(exactPhraseOption);
-        exactPhraseOption.setMnemonic('i');
-        exactPhraseOption.setText("Includes Terms");
-        exactPhraseOption.setToolTipText("Search for files that may contain search terms");
-        exactPhraseOption.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exactPhraseOptionActionPerformed(evt);
-            }
-        });
+        exactPhraseOption.setMnemonic('p');
+        exactPhraseOption.setText("Exact Phrase");
+        exactPhraseOption.setToolTipText("Search for files that contain exact phrasing of search terms");
 
         searchButton.setMnemonic('s');
         searchButton.setText("Search!");
         searchButton.setToolTipText("");
         searchButton.setEnabled(false);
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Results: ");
 
@@ -152,6 +152,11 @@ public class GUI extends javax.swing.JFrame {
 
         aboutOption.setMnemonic('b');
         aboutOption.setText("About...");
+        aboutOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutOptionActionPerformed(evt);
+            }
+        });
         fileMenu.add(aboutOption);
         fileMenu.add(jSeparator1);
 
@@ -202,6 +207,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
         // TODO add your handling code here:
+        new AddRemoveUI().setVisible(true);
     }//GEN-LAST:event_addRemoveOptionActionPerformed
 
     private void exitOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitOptionActionPerformed
@@ -209,9 +215,14 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitOptionActionPerformed
 
-    private void exactPhraseOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exactPhraseOptionActionPerformed
+    private void aboutOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutOptionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_exactPhraseOptionActionPerformed
+        new AboutScreen().setVisible(true);
+    }//GEN-LAST:event_aboutOptionActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +257,10 @@ public class GUI extends javax.swing.JFrame {
                 new GUI().setVisible(true);
             }
         });
+        
+        //Enable the search button logic:
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
