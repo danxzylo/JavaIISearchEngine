@@ -165,7 +165,7 @@
         </Component>
         <Component class="java.awt.TextField" name="userSearchText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userSearchTextActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userSearchTextKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="allTermsOption">

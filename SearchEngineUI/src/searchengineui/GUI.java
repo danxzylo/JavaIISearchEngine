@@ -52,9 +52,9 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel1.setText("Search Criteria: ");
 
-        userSearchText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userSearchTextActionPerformed(evt);
+        userSearchText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                userSearchTextKeyReleased(evt);
             }
         });
 
@@ -201,10 +201,6 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userSearchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSearchTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userSearchTextActionPerformed
-
     private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
         // TODO add your handling code here:
         new AddRemoveUI().setVisible(true);
@@ -223,6 +219,17 @@ public class GUI extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void userSearchTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchTextKeyReleased
+        // TODO add your handling code here:
+        //Enable the search button logic:
+        if (userSearchText.getText().length() > 0){
+            searchButton.setEnabled(true);
+        }
+        else{
+            searchButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_userSearchTextKeyReleased
 
     /**
      * @param args the command line arguments
@@ -258,7 +265,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
-        //Enable the search button logic:
+        
         
         
     }
