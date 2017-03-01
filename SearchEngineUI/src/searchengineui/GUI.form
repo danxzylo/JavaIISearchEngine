@@ -16,6 +16,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="98"/>
                 <Property name="text" type="java.lang.String" value="About..."/>
+                <Property name="toolTipText" type="java.lang.String" value="Open About screen"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutOptionActionPerformed"/>
@@ -27,6 +28,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="120"/>
                 <Property name="text" type="java.lang.String" value="Exit"/>
+                <Property name="toolTipText" type="java.lang.String" value="Exit the program"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitOptionActionPerformed"/>
@@ -44,6 +46,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="114"/>
                 <Property name="text" type="java.lang.String" value="Add/Remove Files..."/>
+                <Property name="toolTipText" type="java.lang.String" value="Open file index editor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRemoveOptionActionPerformed"/>
@@ -203,7 +206,7 @@
           <Properties>
             <Property name="mnemonic" type="int" value="115"/>
             <Property name="text" type="java.lang.String" value="Search!"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="Enter search criteria and click search"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>

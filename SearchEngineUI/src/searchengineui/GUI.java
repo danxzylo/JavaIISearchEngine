@@ -76,7 +76,7 @@ public class GUI extends javax.swing.JFrame {
 
         searchButton.setMnemonic('s');
         searchButton.setText("Search!");
-        searchButton.setToolTipText("");
+        searchButton.setToolTipText("Enter search criteria and click search");
         searchButton.setEnabled(false);
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +152,7 @@ public class GUI extends javax.swing.JFrame {
 
         aboutOption.setMnemonic('b');
         aboutOption.setText("About...");
+        aboutOption.setToolTipText("Open About screen");
         aboutOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutOptionActionPerformed(evt);
@@ -162,6 +163,7 @@ public class GUI extends javax.swing.JFrame {
 
         exitOption.setMnemonic('x');
         exitOption.setText("Exit");
+        exitOption.setToolTipText("Exit the program");
         exitOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitOptionActionPerformed(evt);
@@ -176,6 +178,7 @@ public class GUI extends javax.swing.JFrame {
 
         addRemoveOption.setMnemonic('r');
         addRemoveOption.setText("Add/Remove Files...");
+        addRemoveOption.setToolTipText("Open file index editor");
         addRemoveOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addRemoveOptionActionPerformed(evt);
