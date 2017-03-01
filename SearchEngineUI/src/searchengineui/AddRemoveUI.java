@@ -132,9 +132,17 @@ public class AddRemoveUI extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File[] selectedFiles = fileDialog.getSelectedFiles();
             
-            int i = 0;
-            
-            for(i = 0; i<selectedFiles.length; ++i) {
+            // Add selected files if they are not already in fileList
+            int i = 0, n =0;      
+            selectedFilesLoop:
+            for(i = 0; i < selectedFiles.length; ++i) {
+                for(n = 0; n < fileList.getSize(); ++n){
+                    if(selectedFiles[i].toString().equals(fileList.elementAt(n).toString())){
+                        JOptionPane.showMessageDialog(null, "File \"" + 
+                                selectedFiles[i].toString() + "\" is already indexed.");
+                        continue selectedFilesLoop;
+                    }
+                }
                 fileList.addElement(selectedFiles[i].getAbsolutePath());
             }
           
@@ -157,20 +165,25 @@ public class AddRemoveUI extends javax.swing.JFrame {
         try{
             File indexedFiles = new File("indexedfiles.txt");
             indexedFiles.createNewFile();            
-            Scanner scanner = new Scanner(indexedFiles);
-            PrintWriter pw = new PrintWriter(indexedFiles);
-
+            
+            
             int i;
+            fileListFor:
             for(i=0; i<fileList.getSize(); ++i){
+                Scanner scanner = new Scanner(indexedFiles);
+                PrintWriter pw = new PrintWriter(indexedFiles);
                 while(scanner.hasNextLine()){
                     String line = scanner.nextLine();
                     if(line.equals(fileList.elementAt(i).toString())){
-                        continue;
-                    }
+                        continue fileListFor;
+                    }                 
                 }
-                pw.println(fileList.get(i).toString());                          
+                pw.println(fileList.get(i).toString());
+                if (i == (fileList.getSize()-1)){
+                    pw.close();
+                }
             }                      
-            pw.close();
+            
             numberOfFilesIndexed = fileList.getSize();
             }
         
