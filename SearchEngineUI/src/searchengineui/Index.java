@@ -1,0 +1,69 @@
+package searchengineui;
+
+/**
+ *
+ * @author Nestor Arzola
+ */
+import java.nio.file.Files;
+import java.io.OutputStream;
+import javax.swing.DefaultListModel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import javax.swing.JOptionPane;
+import java.io.IOException;
+
+public class Index {
+    public Path indexIt (DefaultListModel list){
+        Path index = Paths.get("index.txt");
+        Map<String, Map<Integer, ArrayList<Integer>>> map = new HashMap<>();
+        
+        int i;
+        for(i = 0; i < list.getSize(); ++i){
+            Path filePath = Paths.get(list.getElementAt(i).toString());
+            try {
+                String content = new String(Files.readAllBytes(filePath));
+                Cleaner cleaner = new Cleaner();
+                content = cleaner.clean(content);
+                String[] wordList = content.split("\\W+");
+                int position;
+                for(position = 0; position < wordList.length; ++position){
+                    if(!map.containsKey(wordList[position])){
+                        map.put(wordList[position], new HashMap<>());                                                
+                        map.get(wordList[position]).put(i, new ArrayList<>());
+                        map.get(wordList[position]).get(i).add(position);
+                    }
+                    else if (!map.get(wordList[position]).containsKey(i)) {                        
+                        map.get(wordList[position]).put(i, new ArrayList<>()); 
+                        map.get(wordList[position]).get(i).add(position);
+                    }
+                    else {
+                        map.get(wordList[position]).get(i).add(position);
+                    }
+                }
+                
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, e);
+            } 
+        }
+        try{
+            OutputStream out = Files.newOutputStream(index);
+            List<String> keys = new ArrayList<>(map.keySet());
+            for(String key : keys) {
+                StringBuilder string = new StringBuilder();
+                string.append(key);                
+                for(i = 0; i < list.getSize(); ++i){
+                    for(Integer position : map.get(key).get(i)) {
+                        string.append(" {" + i + ", " + position + "} ");
+                    }                    
+                }
+                string.append("\n");
+                out.write(string.toString().getBytes());
+            }
+            out.close();
+        } catch (IOException e) {
+            
+        }               
+        return index;
+    }    
+}

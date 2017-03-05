@@ -7,9 +7,11 @@ package searchengineui;
 
 import javax.swing.JFileChooser;
 import java.io.*;
+import java.nio.file.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import java.util.Scanner;
 
 /**
  *
@@ -17,23 +19,26 @@ import java.util.Scanner;
  */
 public class AddRemoveUI extends javax.swing.JFrame {
 
-    DefaultListModel fileList = new DefaultListModel();
+    DefaultListModel <String> fileList = new DefaultListModel<>();
     int numberOfFilesIndexed = fileList.getSize();
     /**
      * Creates new form AddRemoveUI
      */
     public AddRemoveUI() {
         initComponents();
-        try{
-            File indexedFiles = new File("indexedfiles.txt");
-            Scanner scanner = new Scanner(indexedFiles);
-            while(scanner.hasNextLine()){
-                String line = scanner.nextLine();
-                fileList.addElement(line);
+        
+        Path indexedFiles = Paths.get("indexedFiles.txt");
+        try (InputStream in = Files.newInputStream(indexedFiles);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in))) 
+        {
+            String line;            
+            while ((line = reader.readLine()) != null) {
+                fileList.addElement(line);                              
             }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        catch (IOException e) 
+        {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -77,12 +82,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 450;
+        gridBagConstraints.ipadx = 350;
         gridBagConstraints.ipady = 156;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
         getContentPane().add(jScrollPane2, gridBagConstraints);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -105,7 +109,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
         jButton1.setText("Remove Selected");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RemoveButtonClicked(evt);
+                RemoveItem(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -132,26 +136,24 @@ public class AddRemoveUI extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File[] selectedFiles = fileDialog.getSelectedFiles();
             
-            // Add selected files if they are not already in fileList
+            // Add selected files if they are not already in fileList            
             int i = 0, n =0;      
             selectedFilesLoop:
             for(i = 0; i < selectedFiles.length; ++i) {
                 for(n = 0; n < fileList.getSize(); ++n){
-                    if(selectedFiles[i].toString().equals(fileList.elementAt(n).toString())){
+                    if(selectedFiles[i].toString().equals(fileList.elementAt(n))){
                         JOptionPane.showMessageDialog(null, "File \"" + 
-                                selectedFiles[i].toString() + "\" is already indexed.");
+                        selectedFiles[i].toString() + "\" is already indexed.");
                         continue selectedFilesLoop;
                     }
                 }
                 fileList.addElement(selectedFiles[i].getAbsolutePath());
-            }
-          
+            }                                  
             numberOfFilesIndexed = fileList.getSize();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void RemoveItem(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveItem
-        // TODO add your handling code here:
         int selectedIndex = jList1.getSelectedIndex();
         if(selectedIndex != -1){
             fileList.remove(selectedIndex); 
@@ -161,45 +163,24 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     private void OkButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkButton
         // TODO add your handling code here: 
-        
-        try{
-            File indexedFiles = new File("indexedfiles.txt");
-            indexedFiles.createNewFile();            
-            
-            
+        Path indexedFiles = Paths.get("indexedFiles.txt");
+        try (OutputStream out = Files.newOutputStream(indexedFiles);) 
+        {
             int i;
-            fileListFor:
-            for(i=0; i<fileList.getSize(); ++i){
-                Scanner scanner = new Scanner(indexedFiles);
-                PrintWriter pw = new PrintWriter(indexedFiles);
-                while(scanner.hasNextLine()){
-                    String line = scanner.nextLine();
-                    if(line.equals(fileList.elementAt(i).toString())){
-                        continue fileListFor;
-                    }                 
-                }
-                pw.println(fileList.get(i).toString());
-                if (i == (fileList.getSize()-1)){
-                    pw.close();
-                }
-            }                      
-            
-            numberOfFilesIndexed = fileList.getSize();
+            String newLine = "\n";
+            for(i = 0; i < fileList.getSize(); ++i)
+            {
+                out.write(fileList.getElementAt(i).getBytes());
+                out.write(newLine.getBytes());
             }
-        
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            Index index = new Index();
+            index.indexIt(fileList);
+        }
+        catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         this.dispose();       
     }//GEN-LAST:event_OkButton
-
-    private void RemoveButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveButtonClicked
-        int selectedIndex = jList1.getSelectedIndex();
-        if(selectedIndex != -1){
-            fileList.remove(selectedIndex); 
-            numberOfFilesIndexed = fileList.getSize();
-        }                
-    }//GEN-LAST:event_RemoveButtonClicked
 
     /**
      * @param args the command line arguments
@@ -229,11 +210,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddRemoveUI().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new AddRemoveUI().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
