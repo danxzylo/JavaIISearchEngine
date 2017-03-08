@@ -4,6 +4,8 @@ package searchengineui;
  *
  * @author Nestor Arzola
  */
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.nio.file.Files;
 import java.io.OutputStream;
 import javax.swing.DefaultListModel;
@@ -14,9 +16,23 @@ import javax.swing.JOptionPane;
 import java.io.IOException;
 
 public class Index {
-    public Path indexIt (DefaultListModel list){
-        Path index = Paths.get("index.txt");
-        Map<String, Map<Integer, ArrayList<Integer>>> map = new HashMap<>();
+    Map<String, Map<Integer, ArrayList<Integer>>> map = new HashMap<>();
+    ArrayList<String> indexedFilesList;
+    
+    public void index () {        
+        String str;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("indexedFiles.txt"));
+            while((str = in.readLine()) != null){
+                indexedFilesList.add(str);
+            }   
+        } catch (IOException e) {
+            
+        }
+    }
+    
+    public Path indexIt (DefaultListModel list){        
+        Path index = Paths.get("index.txt");        
         
         int i;
         for(i = 0; i < list.getSize(); ++i){
@@ -53,6 +69,9 @@ public class Index {
                 StringBuilder string = new StringBuilder();
                 string.append(key);                
                 for(i = 0; i < list.getSize(); ++i){
+                    if(!map.get(key).containsKey(i)) {
+                        continue;
+                    }
                     for(Integer position : map.get(key).get(i)) {
                         string.append(" {" + i + ", " + position + "} ");
                     }                    
@@ -65,5 +84,5 @@ public class Index {
             
         }               
         return index;
-    }    
+    }   
 }
