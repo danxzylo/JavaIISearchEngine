@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package searchengineui;
+
+import java.io.IOException;
+import java.io.*;
 
 /**
  *
@@ -18,7 +16,6 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
     AddRemoveUI x = new AddRemoveUI();
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,7 +71,7 @@ public class GUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -102,7 +99,6 @@ public class GUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipady = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel3.add(jLabel1, gridBagConstraints);
 
         userSearchText.addActionListener(new java.awt.event.ActionListener() {
@@ -176,9 +172,14 @@ public class GUI extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         searchButton.setMnemonic('s');
-        searchButton.setText("Search!");
+        searchButton.setText("Search");
         searchButton.setToolTipText("");
-        searchButton.setEnabled(false);
+        searchButton.setOpaque(true);
+        searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchButtonClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -208,10 +209,12 @@ public class GUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jPanel1.add(jPanel6, gridBagConstraints);
 
-        jLabel4.setText("Number of files indexed" + String.valueOf(x.numberOfFilesIndexed));
+        jLabel4.setText("Number of indexed files: " + numberOfIndexedFiles());
+        jLabel4.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         fileMenu.setMnemonic('F');
@@ -257,7 +260,7 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
 
         pack();
@@ -284,6 +287,20 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_allTermsOptionActionPerformed
 
+    private void SearchButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonClicked
+       
+    }//GEN-LAST:event_SearchButtonClicked
+ 
+    public int numberOfIndexedFiles () {
+        int lines = 0;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("indexedFiles.txt"));            
+            while (reader.readLine() != null) lines++;
+            reader.close();            
+        } catch (IOException e) {            
+        }
+        return lines;
+    }
     /**
      * @param args the command line arguments
      */
@@ -312,13 +329,9 @@ public class GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new GUI().setVisible(true));
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutOption;
     private javax.swing.JMenuItem addRemoveOption;
@@ -346,4 +359,5 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private java.awt.TextField userSearchText;
     // End of variables declaration//GEN-END:variables
+
 }

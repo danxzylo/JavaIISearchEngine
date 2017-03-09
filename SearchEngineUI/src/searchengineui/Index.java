@@ -19,7 +19,8 @@ public class Index {
     Map<String, Map<Integer, ArrayList<Integer>>> map = new HashMap<>();
     ArrayList<String> indexedFilesList;
     
-    public void index () {        
+    public void index () {  
+        // Get list of files to be indexed from last program run
         String str;
         try {
             BufferedReader in = new BufferedReader(new FileReader("indexedFiles.txt"));
@@ -34,14 +35,23 @@ public class Index {
     public Path indexIt (DefaultListModel list){        
         Path index = Paths.get("index.txt");        
         
+        //Iterate through list of files passed in as parameter
         int i;
         for(i = 0; i < list.getSize(); ++i){
+            //Save file path in Path object
             Path filePath = Paths.get(list.getElementAt(i).toString());
             try {
+                //Put text file into one string
                 String content = new String(Files.readAllBytes(filePath));
-                Cleaner cleaner = new Cleaner();
+                
+                //Take out special characters and make all lowercase
+                Cleaner cleaner = new Cleaner();                
                 content = cleaner.clean(content);
+                
+                //Create array of strings word by word.
                 String[] wordList = content.split("\\W+");
+                
+                //Iterate through string array of words and insert into HashMap
                 int position;
                 for(position = 0; position < wordList.length; ++position){
                     if(!map.containsKey(wordList[position])){
@@ -62,6 +72,8 @@ public class Index {
                 JOptionPane.showMessageDialog(null, e);
             } 
         }
+        
+        //Print map contents to files
         try{
             OutputStream out = Files.newOutputStream(index);
             List<String> keys = new ArrayList<>(map.keySet());
@@ -84,5 +96,5 @@ public class Index {
             
         }               
         return index;
-    }   
+    }       
 }

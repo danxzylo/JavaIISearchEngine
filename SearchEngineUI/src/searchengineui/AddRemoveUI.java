@@ -6,6 +6,7 @@
 package searchengineui;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.Path;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
 public class AddRemoveUI extends javax.swing.JFrame {
 
     DefaultListModel <String> fileList = new DefaultListModel<>();
-    int numberOfFilesIndexed = fileList.getSize();
+    int numberOfFilesIndexed;
     /**
      * Creates new form AddRemoveUI
      */
@@ -128,6 +129,10 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         JFileChooser fileDialog = new JFileChooser();
+        // Filter out non .txt files
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        fileDialog.setFileFilter(filter);
+        
         fileDialog.setMultiSelectionEnabled(true);
         // Set the Directory
         fileDialog.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -179,6 +184,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
         catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        numberOfFilesIndexed = fileList.getSize();
         this.dispose();       
     }//GEN-LAST:event_OkButton
 
