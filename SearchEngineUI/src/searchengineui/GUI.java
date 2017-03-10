@@ -101,9 +101,9 @@ public class GUI extends javax.swing.JFrame {
         gridBagConstraints.ipady = 4;
         jPanel3.add(jLabel1, gridBagConstraints);
 
-        userSearchText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userSearchTextActionPerformed(evt);
+        userSearchText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                userSearchTextKeyReleased(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -174,7 +174,7 @@ public class GUI extends javax.swing.JFrame {
         searchButton.setMnemonic('s');
         searchButton.setText("Search");
         searchButton.setToolTipText("");
-        searchButton.setOpaque(true);
+        searchButton.setEnabled(false);
         searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SearchButtonClicked(evt);
@@ -222,6 +222,11 @@ public class GUI extends javax.swing.JFrame {
 
         aboutOption.setMnemonic('b');
         aboutOption.setText("About...");
+        aboutOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutOptionActionPerformed(evt);
+            }
+        });
         fileMenu.add(aboutOption);
         fileMenu.add(jSeparator1);
 
@@ -266,10 +271,6 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userSearchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSearchTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userSearchTextActionPerformed
-
     private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
     // Call the AddRemoveUI
         new AddRemoveUI().setVisible(true);
@@ -307,6 +308,7 @@ public class GUI extends javax.swing.JFrame {
         else{
             searchButton.setEnabled(false);
         }
+        
     }//GEN-LAST:event_userSearchTextKeyReleased
  
     public int numberOfIndexedFiles () {
