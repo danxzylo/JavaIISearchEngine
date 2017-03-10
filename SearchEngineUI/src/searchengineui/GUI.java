@@ -272,6 +272,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void addRemoveOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRemoveOptionActionPerformed
     // Call the AddRemoveUI
+        new AddRemoveUI().setVisible(true);
     }//GEN-LAST:event_addRemoveOptionActionPerformed
 
     private void exitOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitOptionActionPerformed
