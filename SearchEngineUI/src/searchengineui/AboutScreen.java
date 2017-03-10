@@ -118,12 +118,12 @@ public class AboutScreen extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
                 // TODO add your handling code here:
-            
+                dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void OkButton(java.awt.event.MouseEvent evt) {                          
         // TODO add your handling code here:
-        this.dispose();
+       
     }                         
 
     /**
