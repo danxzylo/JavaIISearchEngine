@@ -279,6 +279,12 @@ public class GUI extends javax.swing.JFrame {
         // When exit is clicked, program is closed
         System.exit(0);
     }//GEN-LAST:event_exitOptionActionPerformed
+    
+    private void aboutOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutOptionActionPerformed
+        // TODO add your handling code here:
+        new AboutScreen().setVisible(true);
+    }//GEN-LAST:event_aboutOptionActionPerformed
+
 
     private void exactPhraseOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exactPhraseOptionActionPerformed
         // TODO add your handling code here:
