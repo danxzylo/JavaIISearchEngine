@@ -297,6 +297,17 @@ public class GUI extends javax.swing.JFrame {
     private void SearchButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonClicked
        
     }//GEN-LAST:event_SearchButtonClicked
+    
+    private void userSearchTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchTextKeyReleased
+        // TODO add your handling code here:
+        //Enable the search button logic:
+        if (userSearchText.getText().length() > 0){
+            searchButton.setEnabled(true);
+        }
+        else{
+            searchButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_userSearchTextKeyReleased
  
     public int numberOfIndexedFiles () {
         int lines = 0;
