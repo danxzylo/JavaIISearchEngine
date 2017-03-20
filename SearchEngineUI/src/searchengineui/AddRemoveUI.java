@@ -186,6 +186,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
         numberOfFilesIndexed = fileList.getSize();
+        GUI.indexCounterText();
         this.dispose();       
     }//GEN-LAST:event_OkButton
 
