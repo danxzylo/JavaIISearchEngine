@@ -58,10 +58,11 @@ public class AddRemoveUI extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Add/Remove Files");
+        setType(java.awt.Window.Type.POPUP);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         okButton.setMnemonic('o');
@@ -107,8 +108,8 @@ public class AddRemoveUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 55, 0, 40);
         jPanel1.add(addButton, gridBagConstraints);
 
-        jButton1.setText("Remove Selected");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        removeButton.setText("Remove Selected");
+        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RemoveItem(evt);
             }
@@ -117,7 +118,7 @@ public class AddRemoveUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 100, 0, 65);
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(removeButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -221,10 +222,10 @@ public class AddRemoveUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
 }
