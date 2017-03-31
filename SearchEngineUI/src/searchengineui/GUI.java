@@ -36,9 +36,9 @@ public class GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         userSearchText = new java.awt.TextField();
         jPanel4 = new javax.swing.JPanel();
-        includesTermsOption = new javax.swing.JRadioButton();
-        allTermsOption = new javax.swing.JRadioButton();
         exactPhraseOption = new javax.swing.JRadioButton();
+        allTermsOption = new javax.swing.JRadioButton();
+        includesOption = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         searchButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -97,15 +97,15 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup1.add(includesTermsOption);
-        includesTermsOption.setMnemonic('p');
-        includesTermsOption.setText("Exact Phrase");
-        includesTermsOption.setToolTipText("Search for files that contain the exact phrasing of search terms");
+        buttonGroup1.add(exactPhraseOption);
+        exactPhraseOption.setMnemonic('p');
+        exactPhraseOption.setText("Exact Phrase");
+        exactPhraseOption.setToolTipText("Search for files that contain the exact phrasing of search terms");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel4.add(includesTermsOption, gridBagConstraints);
+        jPanel4.add(exactPhraseOption, gridBagConstraints);
 
         buttonGroup1.add(allTermsOption);
         allTermsOption.setMnemonic('A');
@@ -123,20 +123,20 @@ public class GUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel4.add(allTermsOption, gridBagConstraints);
 
-        buttonGroup1.add(exactPhraseOption);
-        exactPhraseOption.setMnemonic('i');
-        exactPhraseOption.setText("Includes Terms");
-        exactPhraseOption.setToolTipText("Search for files that may contain search terms");
-        exactPhraseOption.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(includesOption);
+        includesOption.setMnemonic('i');
+        includesOption.setText("Includes Terms");
+        includesOption.setToolTipText("Search for files that may contain search terms");
+        includesOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exactPhraseOptionActionPerformed(evt);
+                includesOptionActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel4.add(exactPhraseOption, gridBagConstraints);
+        jPanel4.add(includesOption, gridBagConstraints);
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
@@ -147,6 +147,11 @@ public class GUI extends javax.swing.JFrame {
         searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SearchButtonClicked(evt);
+            }
+        });
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -288,16 +293,18 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutOptionActionPerformed
 
 
-    private void exactPhraseOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exactPhraseOptionActionPerformed
+    private void includesOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_includesOptionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_exactPhraseOptionActionPerformed
+    }//GEN-LAST:event_includesOptionActionPerformed
 
     private void allTermsOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allTermsOptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_allTermsOptionActionPerformed
 
     private void SearchButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonClicked
-       
+       String[] searchQuery = new String[];
+       userSearchText.getText();
+       Index.SearchFunctions();
     }//GEN-LAST:event_SearchButtonClicked
     
     private void userSearchTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchTextKeyReleased
@@ -311,6 +318,12 @@ public class GUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_userSearchTextKeyReleased
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
  
     public static int numberOfIndexedFiles () {
         int lines = 0;
@@ -369,11 +382,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton exactPhraseOption;
     private javax.swing.JMenuItem exitOption;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JRadioButton includesTermsOption;
+    private javax.swing.JRadioButton includesOption;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public static javax.swing.JLabel jLabel4;
     private static javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

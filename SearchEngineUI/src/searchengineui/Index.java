@@ -3,6 +3,8 @@ package searchengineui;
 /**
  *
  * @author Nestor Arzola
+ * @author Daniel Zacarias
+ * @author Ricci Ruiz
  */
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -96,5 +98,18 @@ public class Index {
             
         }               
         return index;
-    }       
+    }
+    
+    public static void SearchFunctions(){
+        
+        //if (GUI.getComponent(allSearchTerms().selected()) = true){
+    
+            
+    
+        //}
+    
+        
+    }
 }
+
+
