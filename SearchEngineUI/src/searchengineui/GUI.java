@@ -1,6 +1,6 @@
 package searchengineui;
 import java.io.IOException;
-
+//import java.util.ArrayList;
 import java.io.*;
 
 /**
@@ -302,9 +302,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_allTermsOptionActionPerformed
 
     private void SearchButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonClicked
-       String[] searchQuery = new String[];
-       userSearchText.getText();
-       Index.SearchFunctions();
+//       ArrayList<String> searchQuery = new ArrayList<String>();
+//       
+//       for(int i = 0; i < userSearchText().getLength();)
+//       
+//       userSearchText.getText();
+//       Index.SearchFunctions();
     }//GEN-LAST:event_SearchButtonClicked
     
     private void userSearchTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userSearchTextKeyReleased
