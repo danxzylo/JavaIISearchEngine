@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import javax.swing.JOptionPane;
 import java.io.IOException;
+import searchengineui.GUI.*;
 
 public class Index {
     Map<String, Map<Integer, ArrayList<Integer>>> map = new HashMap<>();
@@ -100,18 +101,22 @@ public class Index {
         return index;
     }
     
-    public static String[] SearchFunctions(String query){
+   // public static String[] SearchFunctions(String query){
 
-        String cleanedQuery = query;            
+        
+        
+        //String cleanedQuery = query;            
         //Take out special characters and make all lowercase
-        Cleaner cleaner = new Cleaner();                
-        cleanedQuery = cleaner.clean(cleanedQuery);
+        //Cleaner cleaner = new Cleaner();                
+        //cleanedQuery = cleaner.clean(cleanedQuery);
                 
         //Create array of strings word by word.
-        String[] wordList = cleanedQuery.split("\\W+");
+        //String[] wordList = cleanedQuery.split("\\W+");
 
 //        Set<document> results = new HashSet<>();
+//        HashSet results = new HashSet();
 //        for(String temp : wordList){
+//            for(String temp : wordList){
 //            if ( wordList[] =!  )
 //                continue;  // No document contains this word
 //            // Add all documents containing this word to the results:
@@ -121,7 +126,74 @@ public class Index {
 //        
 //        return results;
 
+   // }
+    public List<String> allSearchTerms (String userSearch) {        
+        List<String> fileList = new ArrayList<>();
+        String[] searchTerms = userSearch.split(" "); 
+                
+        fileList.clear();
+        
+        
+        
+        int i;
+        for(i = 0; i < this.indexedFilesList.size(); ++i) {
+            for(String term : searchTerms) {               
+                if(!(this.map.containsKey(term) && this.map.get(term).containsKey(i))) {                    
+                    continue; 
+                }
+                fileList.add(indexedFilesList.get(i));
+            }
+        }                
+        return fileList;
     }
+    
+    public List<String> includeTerms (String userSearch) {
+        List<String> fileList = new ArrayList<>();
+        String[] searchTerms = userSearch.split(" ");              
+        fileList.clear();
+        
+        int i;
+        for(i = 0; i < indexedFilesList.size(); ++i) {
+            for(String term : searchTerms) {               
+                if(this.map.containsKey(term) && this.map.get(term).containsKey(i)) {
+                    if(fileList.contains(indexedFilesList.get(i))){
+                        continue;
+                    }
+                    fileList.add(indexedFilesList.get(i));                   
+                }                
+            }
+        }        
+        return fileList;
+    }
+    
+    public List<String> exactPhrase (String userSearch) {
+        List<String> fileList = new ArrayList<>();
+        List<Integer> firstTermPositions;       
+        String[] searchTerms = userSearch.split(" ");               
+        fileList.clear();
+                
+        int i;
+        for(i = 0; i < indexedFilesList.size(); ++i) {    
+            if(!this.map.containsKey(searchTerms[0])) {
+                continue;
+            }
+            firstTermPositions = this.map.get(searchTerms[0]).get(i);
+            for(Integer position : firstTermPositions) {
+                for(String term : searchTerms) {
+                    if(term.equals(searchTerms[0])) {
+                        continue;
+                    }
+                    if(!this.map.get(term).get(i).contains(position + 1)) {
+                        break;
+                    }
+                }
+                fileList.add(indexedFilesList.get(i));
+                break;
+            }
+        }        
+        return fileList;
+    }
+
 }
 
 
