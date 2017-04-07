@@ -100,15 +100,27 @@ public class Index {
         return index;
     }
     
-    public static void SearchFunctions(){
-        
-        //if (GUI.getComponent(allSearchTerms().selected()) = true){
-    
-            
-    
-        //}
-    
-        
+    public static String[] SearchFunctions(String query){
+
+        String cleanedQuery = query;            
+        //Take out special characters and make all lowercase
+        Cleaner cleaner = new Cleaner();                
+        cleanedQuery = cleaner.clean(cleanedQuery);
+                
+        //Create array of strings word by word.
+        String[] wordList = cleanedQuery.split("\\W+");
+
+//        Set<document> results = new HashSet<>();
+//        for(String temp : wordList){
+//            if ( wordList[] =!  )
+//                continue;  // No document contains this word
+//            // Add all documents containing this word to the results:
+//            Set<Integer> documentsWithWord = Map.get(word).keySet();
+//            results.addAll( documentsWithWord );
+//        }
+//        
+//        return results;
+
     }
 }
 
