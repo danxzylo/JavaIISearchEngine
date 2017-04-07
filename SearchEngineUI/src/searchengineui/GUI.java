@@ -1,6 +1,13 @@
 package searchengineui;
 import java.io.IOException;
 import java.io.*;
+import java.nio.file.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -8,7 +15,7 @@ import java.io.*;
  * @author Daniel Zacarias
  */
 public class GUI extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form GUI
      */
@@ -302,8 +309,65 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_allTermsOptionActionPerformed
 
     private void SearchButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonClicked
-       String query = userSearchText.getText();
-       Index.SearchFunctions(query);
+       //String query = userSearchText.getText();
+       //Index.SearchFunctions(query);
+            Index index = new Index();
+        List<String> resultsList;
+        
+        if(allTermsOption.isSelected()) {
+            
+            resultsArea.setText("");
+            resultsArea.setText(Arrays.toString(index.allSearchTerms(userSearchText.getText()).toArray()));                        
+        }
+        
+        if(includesOption.isSelected()) {
+            resultsArea.setText("");
+            resultsList = index.includeTerms(userSearchText.getText());
+            for(String s : resultsList) {
+                resultsArea.setText(s);
+            }
+        }
+        
+        if(exactPhraseOption.isSelected()) {
+            resultsArea.setText("");
+            resultsList = index.exactPhrase(userSearchText.getText());
+            for(String s : resultsList) {
+                resultsArea.setText(s);
+            }
+        }
+        
+        try
+        {    
+            Path searchesPath = Paths.get("searchHistory.txt");
+            try {
+                if(!Files.exists(searchesPath)){
+                    Files.createFile(searchesPath);
+                }
+            } catch (FileAlreadyExistsException ignored){                
+            }                       
+            List<String> searches = Files.readAllLines(searchesPath); 
+            if(!searches.isEmpty()){
+                for(String line : searches)
+                {
+                    if(searches.lastIndexOf(line) == -1)
+                    {                
+                        String newLine = "\n";
+                        OutputStream out = Files.newOutputStream(searchesPath);
+                        out.write(line.getBytes());
+                        out.write(newLine.getBytes());
+                    }           
+
+                }
+            } else {
+                OutputStream out = Files.newOutputStream(searchesPath);
+                out.write(userSearchText.getText().getBytes());
+            }
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       
        
     }//GEN-LAST:event_SearchButtonClicked
     
